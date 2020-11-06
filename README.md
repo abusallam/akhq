@@ -140,17 +140,16 @@ docker run -d \
 ```sh
 helm repo add akhq https://akhq.io/
 ```
-* Install it:
+* Install or upgrade
 ```sh
-helm install --name akhq akhq/akhq
+helm upgrade --install akhq akhq/akhq
 ```
-
 #### Requirements
 
 * Chart version >=0.1.1 requires Kubernetes version >=1.14
 * Chart version 0.1.0 works on previous Kubernetes versions
 ```sh
-helm install --name akhq akhq/akhq --version 0.1.0
+helm install akhq akhq/akhq --version 0.1.0
 ```
 
 ### Using git
@@ -361,13 +360,15 @@ Configure basic-auth connection in AKHQ
 ```yaml
 akhq.security:
   basic-auth:
-    admin:
+    - username: admin
       password: "$2a$<hashed password>"
       passwordHash: BCRYPT
-      groups: admin
-    reader:
+      groups: 
+      - admin
+    - username: reader
       password: "<SHA-256 hashed password>"
-      groups: reader
+      groups: 
+      - reader
 ```
 
 ##### LDAP
@@ -660,6 +661,7 @@ Documentation on Confluent 5.5 and schema references can be found [here](https:/
 * [Nuxeo](https://www.nuxeo.com/)
 * [Pipedrive](https://www.pipedrive.com)
 * [BARMER](https://www.barmer.de/)
+* [TVG](https://www.tvg.com)
 
 
 ## Credits
